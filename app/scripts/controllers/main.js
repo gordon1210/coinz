@@ -62,7 +62,7 @@ angular.module('coinz').controller('MainCtrl', [
             var coindata = angular.copy(self.coindata);
 
             coindata.sort(function (a, b) {
-                if (a[field] > b[field])
+                if (a[field] >= b[field])
                     return -1;
                 if (a[field] < b[field])
                     return 1;

@@ -1,3 +1,46 @@
-<div ng-repeat="coin in main.toplists.volume24 track by $index">
-  <coinbox coin="coin"></coinbox>
+<div class="toplists">
+    <div>
+        <label>VOLUME 24h</label>
+        <div>
+            <div ng-repeat="coin in main.toplists.volume24 track by $index">
+                <coinbox coin="coin"></coinbox>
+            </div>
+        </div>
+        <br style="clear: both;">
+    </div>
+    <div>
+        <label>WINNER 1h</label>
+        <div>
+            <div ng-repeat="coin in main.toplists.winner1h track by $index">
+                <coinbox coin="coin" change="'percent_change_1h'"></coinbox>
+            </div>
+        </div>
+        <br style="clear: both;">
+    </div>
+    <div>
+        <label>LOOSER 1h</label>
+        <div>
+            <div ng-repeat="coin in main.toplists.looser1h track by $index">
+                <coinbox coin="coin" change="'percent_change_1h'"></coinbox>
+            </div>
+        </div>
+        <br style="clear: both;">
+    </div>
+    <div>
+        <label>WINNER 24h</label>
+        <div>
+            <div ng-repeat="coin in main.toplists.winner24h track by $index">
+                <coinbox coin="coin"></coinbox>
+            </div>
+        </div>
+        <br style="clear: both;">
+    </div>
+    <div>
+        <label>LOOSER 24h</label>
+        <div>
+            <div ng-repeat="coin in main.toplists.looser24h track by $index">
+                <coinbox coin="coin"></coinbox>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,83 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
 }
 
 body {
-  padding: 0;
+    padding: 0;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
 .footer {
-  padding-left: 15px;
-  padding-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /* Custom page header */
 .header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 10px;
 }
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
 }
 
 /* Custom page footer */
 .footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
 }
 
 .container-narrow > hr {
-  margin: 30px 0;
+    margin: 30px 0;
 }
 
 /* Main marketing message and sign up button */
 .jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
 }
 .jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
+    font-size: 21px;
+    padding: 14px 24px;
 }
 
 /* Supporting marketing content */
 .marketing {
-  margin: 40px 0;
+    margin: 40px 0;
 }
 .marketing p + h4 {
-  margin-top: 28px;
+    margin-top: 28px;
+}
+
+.nb-up {
+    font-size: 16px;
+    font-weight: 700;
+    color: #71d358;
+}
+
+.nb-dn {
+    font-size: 16px;
+    font-weight: 700;
+    color: #d15a34;
+}
+.coinz-bright .nb-up {
+    color: #468d46!important;
+}
+.coinz-bright .nb-dn {
+    color: #b84946!important;
+}
+
+.container {
+    padding: 0!important;
+    margin: 0!important;
+}
+
+.toplists > div {
+    width: 20%;
+    float: left;
+}
+
+.coinbox {
+    float: left;
+    width: 320px;
+    /*height: 154px;*/
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.coinbox .coinbox-image,
+.coinbox .coinbox-info {
+    float: left;
+    padding: 8px;
+}
+.coinbox .coinbox-secondary {
+    font-size: 12px;
+    color: #666;
+}
+.coinbox .coinbox-title {
+    font-size: 16px;
+    font-weight: 700;
+}
+.coinbox .coinbox-vol {
+    font-size: 12px;
+    clear: both;
+}
+.coinbox .coinbox-volume,
+.coinbox .coinbox-marketcap {
+    float: left;
+    text-align: center;
+    width: 50%;
+    border-top: 1px solid #ddd;
+    padding-top: 8px;
+}
+.coinbox .coinbox-volume span:last-child,
+.coinbox .coinbox-marketcap span:last-child {
+    font-size: 10px;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
+    .container {
+        width: 100%;
+    }
 
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+    /* Remove the padding we set earlier */
+    .header,
+    .marketing,
+    .footer {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    /* Space out the masthead */
+    .header {
+        margin-bottom: 30px;
+    }
+    /* Remove the bottom border on the jumbotron for visual effect */
+    .jumbotron {
+        border-bottom: 0;
+    }
 }

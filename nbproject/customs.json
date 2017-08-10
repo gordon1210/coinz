@@ -2,6 +2,7 @@
     "elements": {
         "coinbox": {
             "attributes": {
+                "change": {},
                 "coin": {}
             }
         }
