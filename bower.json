@@ -1,0 +1,29 @@
+{
+  "name": "coinz",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "angular": "^1.6.5",
+    "bootstrap": "^3.2.0",
+    "angular-animate": "^1.6.5",
+    "angular-cookies": "^1.6.5",
+    "angular-resource": "^1.6.5",
+    "angular-route": "^1.6.5",
+    "angular-sanitize": "^1.6.5",
+    "angular-touch": "^1.6.5"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.6.5"
+  },
+  "appPath": "app",
+  "moduleName": "coinz",
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+}

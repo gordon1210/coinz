@@ -1,0 +1,10 @@
+{
+    "elements": {
+        "coinbox": {
+            "attributes": {
+                "coin": {}
+            }
+        }
+    },
+    "attributes": {}
+}
