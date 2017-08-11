@@ -13,23 +13,80 @@
 
  */
 angular.module('coinz').controller('MainCtrl', [
-    '$http',
-    function ($http) {
+    '$http', '$q',
+    function ($http, $q) {
         var self = this;
 
         self.coindata = [];
+        /*
+         *                 self.toplists.winner1h = getTopTen('percent_change_1h', 10);
+         });
+         $q(function () {
+         self.toplists.looser1h = getTopTen('percent_change_1h', 10, true);
+         });
+         $q(function () {
+         self.toplists.winner24h = getTopTen('percent_change_24h', 10);
+         });
+         $q(function () {
+         self.toplists.looser24h = getTopTen('percent_change_24h', 10, true);
+         });
+         $q(function () {
+         self.toplists.winner7d = getTopTen('percent_change_7d', 10);
+         });
+         $q(function () {
+         self.toplists.looser7d = getTopTen('percent_change_7d', 10, true);
+         });
+         $q(function () {
+         self.toplists.volume24 = getTopTen('24h_volume_usd', 10);
+         });
+         $q(function () {
+         self.toplists.marketcap = getTopTen('market_cap_usd', 10);
+         */
+
 
         self.toplists = {
             //winner, looser
-            'winner1h': [],
-            'looser1h': [],
-            'winner24h': [],
-            'looser24h': [],
-            'winner7d': [],
-            'looser7d': [],
+            'winner1h': {
+                key: 'percent_change_1h',
+                reverse: false,
+                data: []
+            },
+            'looser1h': {
+                key: 'percent_change_1h',
+                reverse: true,
+                data: []
+            },
+            'winner24h': {
+                key: 'percent_change_24h',
+                reverse: false,
+                data: []
+            },
+            'looser24h': {
+                key: 'percent_change_24h',
+                reverse: true,
+                data: []
+            },
+            'winner7d': {
+                key: 'percent_change_7d',
+                reverse: false,
+                data: []
+            },
+            'looser7d': {
+                key: 'percent_change_7d',
+                reverse: true,
+                data: []
+            },
             //market cap, volume24h
-            'volume24': [],
-            'marketcap': []
+            'volume24': {
+                key: '24h_volume_usd',
+                reverse: false,
+                data: []
+            },
+            'marketcap': {
+                key: 'market_cap_usd',
+                reverse: false,
+                data: []
+            }
         };
 
         var coindataParseNumbers = function () {
@@ -58,7 +115,13 @@ angular.module('coinz').controller('MainCtrl', [
             });
         };
 
+        var sortCache = {};
+
         var getSortedBy = function (field) {
+            if (sortCache[field] !== undefined) {
+                return angular.copy(sortCache[field]);
+            }
+
             var coindata = angular.copy(self.coindata);
 
             coindata.sort(function (a, b) {
@@ -69,16 +132,17 @@ angular.module('coinz').controller('MainCtrl', [
                 return 0;
             });
 
+            sortCache[field] = angular.copy(coindata);
+
             return coindata;
         };
 
-        var getTopTen = function (field, length, reverse) {
+        var getTopTen = function (field, reverse, length, offset) {
             var coindata = getSortedBy(field);
             if (reverse) {
                 coindata.reverse();
             }
-            coindata.length = length;
-            return coindata;
+            return coindata.slice(offset ? offset : 0, length + offset);
         };
 
         $http({
@@ -88,17 +152,20 @@ angular.module('coinz').controller('MainCtrl', [
             self.coindata = response.data;
             coindataParseNumbers();
 
-            self.toplists.winner1h = getTopTen('percent_change_1h', 10);
-            self.toplists.looser1h = getTopTen('percent_change_1h', 10, true);
+            var length = 100;
+            var steps = 10;
 
-            self.toplists.winner24h = getTopTen('percent_change_24h', 10);
-            self.toplists.looser24h = getTopTen('percent_change_24h', 10, true);
-
-            self.toplists.winner7d = getTopTen('percent_change_7d', 10);
-            self.toplists.looser7d = getTopTen('percent_change_7d', 10, true);
-
-            self.toplists.volume24 = getTopTen('24h_volume_usd', 10);
-            self.toplists.marketcap = getTopTen('market_cap_usd', 10);
+            for (var i = 0; i < length; i += steps) {
+                for (var toplist in self.toplists) {
+                    $q(function () {
+                        var arr = getTopTen(self.toplists[toplist].key, self.toplists[toplist].reverse, steps, i);
+                        for (var x in arr) {
+                            console.log('pushing in: ' + toplist + ' i=' + i + ' x=' + x);
+                            self.toplists[toplist].data.push(arr[x]);
+                        }
+                    });
+                }
+            }
 
             console.log(self.toplists);
         }, function (response) {

@@ -38,7 +38,7 @@ angular.module('coinz', [
         }
 
         if (input < 1000) {
-            return input;
+            return input ? input.toFixed(decimals) : input;
         }
 
         exp = Math.floor(Math.log(input) / Math.log(1000));

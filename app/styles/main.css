@@ -92,10 +92,12 @@ body {
     float: left;
 }
 
+.coinbox-wrapper {
+    transition: 1s ease-in all;
+}
 .coinbox {
     float: left;
     width: 320px;
-    /*height: 154px;*/
     border: 1px solid #ddd;
     padding: 8px;
 }
@@ -104,6 +106,21 @@ body {
     float: left;
     padding: 8px;
 }
+.coinbox .coinbox-image {
+    width: 80px;
+    height: 80px;
+}
+.coinbox .coinbox-image.medium {
+    width: 48px;
+    height: 48px;
+}
+.coinbox .coinbox-image.small {
+    width: 34px;
+    height: 34px;
+}
+.coinbox .coinbox-info {
+    max-width: 222px;
+}
 .coinbox .coinbox-secondary {
     font-size: 12px;
     color: #666;
@@ -111,6 +128,9 @@ body {
 .coinbox .coinbox-title {
     font-size: 16px;
     font-weight: 700;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .coinbox .coinbox-vol {
     font-size: 12px;
