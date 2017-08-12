@@ -101,6 +101,61 @@ body.coinz-dark {
 .lists .vol24 span {
     font-size: 11px;
 }
+.lists .cache,
+.lists .filter {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 40px;
+}
+.lists .cache {
+    left: auto;
+    right: 0;
+}
+.coinz-dark .lists .cache button {
+    margin: 4px;
+}
+.lists .filter > div:first-child {
+    display: inline-block;
+    margin-top: 6px;
+}
+
+.lists .filter input,
+.lists .filter span {
+    margin-left: 5px;
+}
+.lists .filter input {
+    text-align: right;
+    width: 124px;
+}
+
+.coinz-dark .lists .cache button,
+.coinz-dark .lists .filter button,
+.coinz-dark .lists .filter input {
+    background-color: #262e38!important;
+    border: 1px solid #3d4a59!important;
+    color: #fff;
+    padding: 2px;
+}
+.lists .refresh {
+    position: absolute;
+    right: 0;
+    top: 12px;
+}
+
+.loading {
+    display: inline-block;
+    position: relative;
+    top: 8px;
+}
+.loading .spinner {
+    margin: 0;
+    height: 24px;
+}
+.spinner > div {
+    background-color: #87caff!important;
+}
+
 .lists > div > div > label {
     width: 100%;
 }
@@ -123,6 +178,19 @@ body.coinz-dark {
     width: 16.6%;
     border: 1px solid #ddd;
     padding: 8px;
+    position: relative;
+    transition: .8s ease-in-out all;
+}
+.coinbox:hover {
+    background-color: #394856!important;
+}
+.coinbox.medium .coinbox-vol {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border: 0!important;
+    z-index: 10;
 }
 .coinz-dark .coinbox {
     border: 1px solid #394856!important;
@@ -179,20 +247,14 @@ body.coinz-dark {
     float: left;
     text-align: center;
     width: 50%;
-    border-top: 1px solid #ddd;
     padding-top: 8px;
 }
 .coinbox.medium .coinbox-volume,
 .coinbox.medium .coinbox-marketcap {
     padding-top: 20px;
 }
-.coinz-dark .coinbox .coinbox-volume,
-.coinz-dark .coinbox .coinbox-marketcap {
-    border-top: 1px solid #394856!important;
-}
-
 .coinbox.medium .coinbox-price {
-    float: left
+    float: left;
 }
 .coinbox.medium .coinbox-secondary {
     float: right;
@@ -220,7 +282,7 @@ body.coinz-dark {
 
 .coinbox.medium .coinbox-vol,
 .coinbox.medium .coinbox-secondary {
-    font-size: 10px;
+    font-size: 9px;
 }
 .coinbox.medium .coinbox-title {
     font-size: 12px;
@@ -240,32 +302,108 @@ body.coinz-dark {
     height: 64px;
 }
 .winloss .coinbox.medium:hover .coinbox-vol {
-    height: 48px;
+    height: 45px;
+}
+
+.winloss .coinbox.medium .coinbox-info {
+    overflow: hidden;
+    height: 36px;
+    transition: .2s ease-in height;
+}
+.winloss .coinbox.medium:hover .coinbox-info {
+    height: 0px;
 }
 
 .coinfade {
-    transition: 2s ease-in all;
+    transition: 2s linear all;
 }
 /* The starting CSS styles for the enter animation */
-.coinfade.ng-enter,
-.coinfade.ng-leave.ng-leave-active {
-    opacity:0;
+.coinfade.ng-enter {
+    opacity: 0;
 }
 .coinfade.ng-enter .coinbox {
-    background-color: white;
-}
-.coinfade.ng-leave,
-.coinfade.ng-enter.ng-enter-active {
-    opacity:1;
-}
-.coinfade.ng-leave .coinbox {
-    background-color: white;
-}
-.coinfade.ng-enter.ng-enter-active .coinbox,
-.coinfade.ng-leave.ng-leave-active .coinbox {
-    background-color: transparent;
+    -webkit-animation: coinz-background-fade 2s infinite linear;
+    animation: coinz-background-fade 2s infinite linear;
 }
 
+.coinfade.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+/*.coinfade.ng-enter.ng-enter-active .coinbox {
+    background-color: transparent;
+}*/
+
+/*.coinfade.ng-leave .coinbox {
+    background-color: white;
+}*/
+.coinfade.ng-leave.ng-leave-active,
+.coinfade.ng-leave,
+.coinfade.ng-leave.ng-leave-active .coinbox {
+    display: none;
+}
+
+@-webkit-keyframes coinz-background-fade {
+    25%, 75% { background-color: #394856; }
+    0%, 50%, 100% { background-color: transparent; }
+}
+
+@keyframes coinz-background-fade {
+    25%, 75% { background-color: #394856; }
+    0%, 50%, 100% { background-color: transparent; }
+}
+
+.spinner {
+    margin: 100px auto;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.spinner > div {
+    background-color: #333;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+    20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }  20% {
+        transform: scaleY(1.0);
+        -webkit-transform: scaleY(1.0);
+    }
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

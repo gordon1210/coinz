@@ -15,7 +15,8 @@ angular.module('coinz', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ngStorage'
+    'ngStorage',
+    'ui.utils.masks'
 ]).config([
     '$routeProvider', '$localStorageProvider',
     function ($routeProvider, $localStorageProvider) {

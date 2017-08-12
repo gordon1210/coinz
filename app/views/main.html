@@ -1,9 +1,29 @@
 <div class="lists">
     <div>
+        <div class="filter">
+            <div>
+                <span>Min. BTC <input type="text" ng-model="main.local.minbtc" ng-change="main.changed()" ui-number-mask="8"/></span>
+                <span>Max. BTC <input type="text" ng-model="main.local.maxbtc" ng-change="main.changed()" ui-number-mask="8"/></span>
+                <button ng-click="main.refresh()">refresh</button>
+                <button ng-click="main.resetbtc()">reset</button>
+            </div>
+            <div ng-show="main.loading" class="loading">
+                <div class="spinner">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                </div>
+            </div>
+        </div>
         <div class="vol24">
             <span>Total Market Cap USD: {{main.local.globaldata['total_market_cap_usd']|tsuffix:3}}</span>
             <label>VOLUME 24h</label>
             <span>24h Market Cap USD: {{main.local.globaldata['total_24h_volume_usd']|tsuffix:3}}</span>
+        </div>
+        <div class="cache">
+            <button ng-click="main.clearcache()">reset cache</button>
         </div>
         <div>
             <div class="coinbox-wrapper coinfade" ng-repeat="coin in main.local.toplists.volume24.data track by coin.id">

@@ -13,13 +13,15 @@
 
  */
 angular.module('coinz').controller('MainCtrl', [
-    '$http', '$timeout', '$q', '$localStorage',
-    function ($http, $timeout, $q, $localStorage) {
+    '$scope', '$http', '$timeout', '$q', '$localStorage',
+    function ($scope, $http, $timeout, $q, $localStorage) {
         var self = this;
 
         var defaults = {
             coindata: [],
             lastrefresh: 0,
+            minbtc: 0.00000005,
+            maxbtc: 0,
             globaldata: {
                 'total_market_cap_usd': 0,
                 'total_24h_volume_usd': 0,
@@ -65,7 +67,7 @@ angular.module('coinz').controller('MainCtrl', [
                     key: '24h_volume_usd',
                     reverse: false,
                     data: [],
-                    length: 12
+                    length: 18
                 },
                 'marketcap': {
                     key: 'market_cap_usd',
@@ -76,6 +78,29 @@ angular.module('coinz').controller('MainCtrl', [
         };
 
         self.local = $localStorage.$default(angular.copy(defaults));
+        self.loading = false;
+
+        self.clearcache = function () {
+            self.local.$reset();
+            self.local = $localStorage.$default(angular.copy(defaults));
+            self.refresh();
+        };
+
+        self.resetbtc = function () {
+            self.local.maxbtc = angular.copy(defaults.maxbtc);
+            self.local.minbtc = angular.copy(defaults.minbtc);
+        };
+
+        self.changed = function () {
+            var satoshi = 100000000;
+            if (self.local.maxbtc > 0 && self.local.minbtc >= self.local.maxbtc) {
+                self.local.minbtc = self.local.maxbtc - (1 / satoshi);
+            }
+            if (self.local.maxbtc === 0) return;
+            if (self.local.maxbtc <= self.local.minbtc) {
+                self.local.maxbtc = self.local.minbtc + (1 / satoshi);
+            }
+        };
 
         var coindataParseNumbers = function () {
             var parse = {
@@ -120,6 +145,12 @@ angular.module('coinz').controller('MainCtrl', [
                 return 0;
             });
 
+            var coindata = coindata.filter(function (x) {
+                return self.local.maxbtc > 0
+                    ? x['price_btc'] > self.local.minbtc && x['price_btc'] < self.local.maxbtc
+                    : x['price_btc'] > self.local.minbtc;
+            });
+
             sortCache[field] = angular.copy(coindata);
 
             return coindata;
@@ -150,6 +181,8 @@ angular.module('coinz').controller('MainCtrl', [
                 return;
             }
 
+            self.loading = true;
+
             $http({
                 method: 'GET',
                 url: 'https://api.coinmarketcap.com/v1/ticker/?convert=EUR'
@@ -164,13 +197,15 @@ angular.module('coinz').controller('MainCtrl', [
                         var o = self.local.toplists[toplist];
                         var key = o.key;
                         var reverse = o.reverse;
-                        var length = o.length ? o.length : 10;
+                        var length = o.length ? o.length : 36;
 
                         self.local.toplists[toplist].data = getTopTen(key, reverse, length);
                     });
                 }
 
+                self.loading = false;
             }, function (response) {
+                self.loading = false;
                 throw response;
             });
 
@@ -185,5 +220,11 @@ angular.module('coinz').controller('MainCtrl', [
         };
 
         call();
+
+        self.refresh = function () {
+            console.log('refreshing');
+            self.local.lastrefresh = 0;
+            call();
+        };
     }
 ]);
