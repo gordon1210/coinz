@@ -2,7 +2,11 @@
     "elements": {
         "coinbox": {
             "attributes": {
+                "ng-show": {},
+                "size": {},
                 "change": {},
+                "ng-if": {},
+                "class": {},
                 "coin": {}
             }
         }

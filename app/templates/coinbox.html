@@ -1,11 +1,12 @@
-<div class="coinbox">
+<div class="coinbox" ng-class="{'medium': size === 'medium', 'small': size === 'small'}">
     <div class="coinbox-image"><img ng-if="coin['id']" alt="{{coin['id']}}" ng-src="{{imgurl()}}"></div>
     <div class="coinbox-info">
-        <div class="coinbox-title">{{coin['name']}} [{{coin['symbol']}}]</div>
+        <div class="coinbox-title"><a ng-href="http://coinmarketcap.com/currencies/{{coin['id']}}">{{coin['name']}} [{{coin['symbol']}}]</a></div>
         <div class="coinbox-price">
             <span ng-if="coin['price_usd'] >= 1">{{coin['price_usd']| number:2}} USD</span>
             <span ng-if="coin['price_usd'] < 1">{{coin['price_usd']| number:6}} USD</span>&nbsp;
-            <span ng-class="{'nb-dn': coin[percentChange()] < 0, 'nb-up': coin[percentChange()] > 0}">({{coin[percentChange()]| number:2}}%)</span>
+            <span ng-if="percentChange()" ng-class="{'nb-dn': percentChange() < 0, 'nb-up': percentChange() > 0}">({{percentChange() | number:2}}%)</span>
+            <span ng-if="!percentChange()">N/A</span>
         </div>
         <div class="coinbox-secondary"><span ng-if="coin['id'] !== 'bitcoin'">{{coin['price_btc']| number:8}} BTC</span></div>
     </div>

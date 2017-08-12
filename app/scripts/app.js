@@ -14,8 +14,11 @@ angular.module('coinz', [
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
-]).config(['$routeProvider', function ($routeProvider) {
+    'ngTouch',
+    'ngStorage'
+]).config([
+    '$routeProvider', '$localStorageProvider',
+    function ($routeProvider, $localStorageProvider) {
         $routeProvider.when('/', {
             templateUrl: 'views/main.html',
             controller: 'MainCtrl',

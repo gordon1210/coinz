@@ -11,7 +11,11 @@
 }
 
 body {
-    padding: 0;
+    overflow-y: scroll;
+}
+body.coinz-dark {
+    background-color: #212830!important;
+    color: white!important;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -69,12 +73,12 @@ body {
     font-weight: 700;
     color: #71d358;
 }
-
 .nb-dn {
     font-size: 16px;
     font-weight: 700;
     color: #d15a34;
 }
+
 .coinz-bright .nb-up {
     color: #468d46!important;
 }
@@ -87,8 +91,27 @@ body {
     margin: 0!important;
 }
 
-.toplists > div {
-    width: 20%;
+.lists .vol24 {
+    margin: 0 auto;
+}
+.lists .vol24 label {
+    display: inline;
+    margin: 0 96px;
+}
+.lists .vol24 span {
+    font-size: 11px;
+}
+.lists > div > div > label {
+    width: 100%;
+}
+.lists .vol24,
+.lists > div > div > label {
+    text-align: center;
+    line-height: 48px;
+}
+
+.winloss > div {
+    width: 16.6%;
     float: left;
 }
 
@@ -97,9 +120,15 @@ body {
 }
 .coinbox {
     float: left;
-    width: 320px;
+    width: 16.6%;
     border: 1px solid #ddd;
     padding: 8px;
+}
+.coinz-dark .coinbox {
+    border: 1px solid #394856!important;
+}
+.winloss .coinbox {
+    width: 100%;
 }
 .coinbox .coinbox-image,
 .coinbox .coinbox-info {
@@ -110,20 +139,26 @@ body {
     width: 80px;
     height: 80px;
 }
-.coinbox .coinbox-image.medium {
-    width: 48px;
-    height: 48px;
+.coinbox.medium .coinbox-image {
+    width: 36px;
+    height: 36px;
 }
-.coinbox .coinbox-image.small {
-    width: 34px;
-    height: 34px;
+.coinbox.small .coinbox-image {
+    width: 20px;
+    height: 20px;
 }
 .coinbox .coinbox-info {
-    max-width: 222px;
+    width: 72%;
+}
+.coinbox.medium .coinbox-info {
+    width: 83%;
 }
 .coinbox .coinbox-secondary {
     font-size: 12px;
     color: #666;
+}
+.coinz-dark .coinbox .coinbox-secondary {
+    color: #999;
 }
 .coinbox .coinbox-title {
     font-size: 16px;
@@ -131,6 +166,9 @@ body {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+.coinz-dark .coinbox-title a {
+    color: #87caff!important;
 }
 .coinbox .coinbox-vol {
     font-size: 12px;
@@ -144,10 +182,90 @@ body {
     border-top: 1px solid #ddd;
     padding-top: 8px;
 }
-.coinbox .coinbox-volume span:last-child,
-.coinbox .coinbox-marketcap span:last-child {
+.coinbox.medium .coinbox-volume,
+.coinbox.medium .coinbox-marketcap {
+    padding-top: 20px;
+}
+.coinz-dark .coinbox .coinbox-volume,
+.coinz-dark .coinbox .coinbox-marketcap {
+    border-top: 1px solid #394856!important;
+}
+
+.coinbox.medium .coinbox-price {
+    float: left
+}
+.coinbox.medium .coinbox-secondary {
+    float: right;
+}
+.coinbox.medium .coinbox-secondary {
+    margin-left: 5px;
+}
+
+.coinbox.medium {
+    padding: 4px;
+}
+.coinbox.medium .coinbox-image,
+.coinbox.medium .coinbox-info {
+    padding: 2px;
+}
+.coinbox.medium .coinbox-volume,
+.coinbox.medium .coinbox-marketcap {
+    padding-top: 2px;
+}
+
+.coinbox.medium .coinbox-volume span:last-child,
+.coinbox.medium .coinbox-marketcap span:last-child {
     font-size: 10px;
 }
+
+.coinbox.medium .coinbox-vol,
+.coinbox.medium .coinbox-secondary {
+    font-size: 10px;
+}
+.coinbox.medium .coinbox-title {
+    font-size: 12px;
+}
+.coinbox.medium .coinbox-price,
+.coinbox.medium .nb-dn,
+.coinbox.medium .nb-up {
+    font-size: 11px;
+}
+
+.winloss .coinbox .coinbox-vol {
+    overflow: hidden;
+    height: 0px;
+    transition: .2s ease-in height;
+}
+.winloss .coinbox:hover .coinbox-vol {
+    height: 64px;
+}
+.winloss .coinbox.medium:hover .coinbox-vol {
+    height: 48px;
+}
+
+.coinfade {
+    transition: 2s ease-in all;
+}
+/* The starting CSS styles for the enter animation */
+.coinfade.ng-enter,
+.coinfade.ng-leave.ng-leave-active {
+    opacity:0;
+}
+.coinfade.ng-enter .coinbox {
+    background-color: white;
+}
+.coinfade.ng-leave,
+.coinfade.ng-enter.ng-enter-active {
+    opacity:1;
+}
+.coinfade.ng-leave .coinbox {
+    background-color: white;
+}
+.coinfade.ng-enter.ng-enter-active .coinbox,
+.coinfade.ng-leave.ng-leave-active .coinbox {
+    background-color: transparent;
+}
+
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

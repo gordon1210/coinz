@@ -1,45 +1,64 @@
-<div class="toplists">
+<div class="lists">
     <div>
-        <label>VOLUME 24h</label>
+        <div class="vol24">
+            <span>Total Market Cap USD: {{main.local.globaldata['total_market_cap_usd']|tsuffix:3}}</span>
+            <label>VOLUME 24h</label>
+            <span>24h Market Cap USD: {{main.local.globaldata['total_24h_volume_usd']|tsuffix:3}}</span>
+        </div>
         <div>
-            <div class="coinbox-wrapper" ng-repeat="coin in main.toplists.volume24.data track by $index">
+            <div class="coinbox-wrapper coinfade" ng-repeat="coin in main.local.toplists.volume24.data track by coin.id">
                 <coinbox coin="coin"></coinbox>
             </div>
         </div>
-        <br style="clear: both;">
     </div>
-    <div>
-        <label>WINNER 1h</label>
+    <div style="clear: both;"></div>
+    <div class="winloss">
         <div>
-            <div class="coinbox-wrapper" ng-repeat="coin in main.toplists.winner1h.data track by $index">
-                <coinbox coin="coin" change="'percent_change_1h'"></coinbox>
+            <label>WINNER 1h</label>
+            <div>
+                <div class="coinbox-wrapper coinfade" ng-repeat="coin in main.local.toplists.winner1h.data track by coin.id">
+                    <coinbox coin="coin" change="percent_change_1h" size="medium"></coinbox>
+                </div>
             </div>
         </div>
-        <br style="clear: both;">
-    </div>
-    <div>
-        <label>LOOSER 1h</label>
         <div>
-            <div class="coinbox-wrapper" ng-repeat="coin in main.toplists.looser1h.data track by $index">
-                <coinbox coin="coin" change="'percent_change_1h'"></coinbox>
+            <label>WINNER 24h</label>
+            <div>
+                <div class="coinbox-wrapper coinfade" ng-repeat="coin in main.local.toplists.winner24h.data track by coin.id">
+                    <coinbox coin="coin" size="medium"></coinbox>
+                </div>
             </div>
         </div>
-        <br style="clear: both;">
-    </div>
-    <div>
-        <label>WINNER 24h</label>
         <div>
-            <div class="coinbox-wrapper" ng-repeat="coin in main.toplists.winner24h.data track by $index">
-                <coinbox coin="coin"></coinbox>
+            <label>WINNER 7d</label>
+            <div>
+                <div class="coinbox-wrapper coinfade" ng-repeat="coin in main.local.toplists.winner7d.data track by coin.id">
+                    <coinbox coin="coin" change="percent_change_7d" size="medium"></coinbox>
+                </div>
             </div>
         </div>
-        <br style="clear: both;">
-    </div>
-    <div>
-        <label>LOOSER 24h</label>
         <div>
-            <div class="coinbox-wrapper" ng-repeat="coin in main.toplists.looser24h.data track by $index">
-                <coinbox coin="coin"></coinbox>
+            <label>LOOSER 1h</label>
+            <div>
+                <div class="coinbox-wrapper coinfade" ng-repeat="coin in main.local.toplists.looser1h.data track by coin.id">
+                    <coinbox coin="coin" change="percent_change_1h" size="medium"></coinbox>
+                </div>
+            </div>
+        </div>
+        <div>
+            <label>LOOSER 24h</label>
+            <div>
+                <div class="coinbox-wrapper coinfade" ng-repeat="coin in main.local.toplists.looser24h.data track by coin.id">
+                    <coinbox coin="coin" size="medium"></coinbox>
+                </div>
+            </div>
+        </div>
+        <div>
+            <label>LOOSER 7d</label>
+            <div>
+                <div class="coinbox-wrapper coinfade" ng-repeat="coin in main.local.toplists.looser7d.data track by coin.id">
+                    <coinbox coin="coin" change="percent_change_7d" size="medium"></coinbox>
+                </div>
             </div>
         </div>
     </div>

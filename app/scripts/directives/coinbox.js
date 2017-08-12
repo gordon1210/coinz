@@ -12,8 +12,8 @@ angular.module('coinz').directive('coinbox', function () {
         restrict: 'E',
         scope: {
             coin: '=',
-            size: '=?',
-            change: '=?'
+            size: '@?',
+            change: '@?'
         },
         templateUrl: 'templates/coinbox.html',
         link: function (scope) {
@@ -29,10 +29,10 @@ angular.module('coinz').directive('coinbox', function () {
                 }
             };
 
-            scope.percentChange = function() {
-                return scope.change ? scope.change : 'percent_change_24h';
+            scope.percentChange = function () {
+                return scope.change ? scope.coin[scope.change] : scope.coin['percent_change_24h'];
             };
-            
+
             scope.imgurl = function () {
                 return 'https://files.coinmarketcap.com/static/img/coins/' + getsize() + '/' + scope.coin.id + '.png';
             };
