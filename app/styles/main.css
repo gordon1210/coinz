@@ -197,19 +197,27 @@ body.coinz-dark {
 .winloss .coinbox {
     width: 100%;
 }
+.coinbox .coinbox-image-space,
 .coinbox .coinbox-image,
 .coinbox .coinbox-info {
     float: left;
     padding: 8px;
 }
 .coinbox .coinbox-image {
+    position: absolute;
+    z-index: 1000;
+}
+.coinbox .coinbox-image-space,
+.coinbox .coinbox-image {
     width: 80px;
     height: 80px;
 }
+.coinbox.medium .coinbox-image-space,
 .coinbox.medium .coinbox-image {
     width: 36px;
     height: 36px;
 }
+.coinbox.small .coinbox-image-space,
 .coinbox.small .coinbox-image {
     width: 20px;
     height: 20px;

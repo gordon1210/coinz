@@ -1,5 +1,10 @@
 <div class="coinbox" ng-class="{'medium': size === 'medium', 'small': size === 'small'}">
-    <div class="coinbox-image"><img ng-if="coin['id']" alt="{{coin['id']}}" ng-src="{{imgurl()}}"></div>
+    <div class="coinbox-image">
+        <a ng-href="http://coinmarketcap.com/currencies/{{coin['id']}}" target="_blank">
+            <img ng-if="coin['id']" alt="{{coin['id']}}" ng-src="{{imgurl()}}">
+        </a>
+    </div>
+    <div class="coinbox-image-space"></div>
     <div class="coinbox-info">
         <div class="coinbox-title"><a ng-href="http://coinmarketcap.com/currencies/{{coin['id']}}" target="_blank">{{coin['name']}} [{{coin['symbol']}}]</a></div>
         <div class="coinbox-price">
