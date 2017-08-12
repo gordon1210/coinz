@@ -11,5 +11,9 @@
             }
         }
     },
-    "attributes": {}
+    "attributes": {
+        "decimals": {
+            "context": "span"
+        }
+    }
 }

@@ -16,7 +16,8 @@ angular.module('coinz', [
     'ngSanitize',
     'ngTouch',
     'ngStorage',
-    'ui.utils.masks'
+    'ui.utils.masks',
+    'countUpModule'
 ]).config([
     '$routeProvider', '$localStorageProvider',
     function ($routeProvider, $localStorageProvider) {
