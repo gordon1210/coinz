@@ -19,8 +19,8 @@ angular.module('coinz', [
     'ui.utils.masks',
     'countUpModule'
 ]).config([
-    '$routeProvider', '$localStorageProvider',
-    function ($routeProvider, $localStorageProvider) {
+    '$routeProvider', '$httpProvider',
+    function ($routeProvider, $httpProvider) {
         $routeProvider.when('/', {
             templateUrl: 'views/main.html',
             controller: 'MainCtrl',
@@ -32,6 +32,11 @@ angular.module('coinz', [
         }).otherwise({
             redirectTo: '/'
         });
+//        if (!$httpProvider.defaults.headers.get) {
+//            $httpProvider.defaults.headers.get = {};
+//        }
+//        $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+//        $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
     }
 ]).filter('tsuffix', function () {
     return function (input, decimals) {

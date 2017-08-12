@@ -1,7 +1,7 @@
 <div class="coinbox" ng-class="{'medium': size === 'medium', 'small': size === 'small'}">
     <div class="coinbox-image"><img ng-if="coin['id']" alt="{{coin['id']}}" ng-src="{{imgurl()}}"></div>
     <div class="coinbox-info">
-        <div class="coinbox-title"><a ng-href="http://coinmarketcap.com/currencies/{{coin['id']}}">{{coin['name']}} [{{coin['symbol']}}]</a></div>
+        <div class="coinbox-title"><a ng-href="http://coinmarketcap.com/currencies/{{coin['id']}}" target="_blank">{{coin['name']}} [{{coin['symbol']}}]</a></div>
         <div class="coinbox-price">
             <span ng-if="coin['price_usd'] >= 1"><span count-up end-val="coin.price_usd" duration="4" decimals="2"></span> USD</span>
             <span ng-if="coin['price_usd'] < 1"><span count-up end-val="coin.price_usd" duration="4" decimals="6"></span> USD</span>

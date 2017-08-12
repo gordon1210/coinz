@@ -185,7 +185,7 @@ angular.module('coinz').controller('MainCtrl', [
 
             $http({
                 method: 'GET',
-                url: 'https://api.coinmarketcap.com/v1/ticker/?convert=EUR'
+                url: 'https://api.coinmarketcap.com/v1/ticker/?convert=EUR&timestamp=' + Date.now()
             }).then(function (response) {
                 self.local.coindata = response.data;
                 coindataParseNumbers();
@@ -211,7 +211,7 @@ angular.module('coinz').controller('MainCtrl', [
 
             $http({
                 method: 'GET',
-                url: 'https://api.coinmarketcap.com/v1/global/?convert=EUR'
+                url: 'https://api.coinmarketcap.com/v1/global/?convert=EUR&timestamp=' + Date.now()
             }).then(function (response) {
                 self.local.globaldata = response.data;
             }, function (response) {
