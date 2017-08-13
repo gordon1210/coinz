@@ -91,6 +91,20 @@ body.coinz-dark {
     margin: 0!important;
 }
 
+.refresh-progress {
+    position: absolute;
+    top: 40px;
+    height: 20px;
+    left: 5px;
+    width: 24%;
+}
+.progress {
+    background-color: #526577!important
+}
+.progress-bar {
+    background-color: #394856!important;
+}
+
 .lists .lists-head {
     height: 70px;
 }
@@ -227,7 +241,7 @@ body.coinz-dark {
     border: 1px solid #ddd;
     padding: 8px;
     position: relative;
-    transition: .8s ease-in-out all;
+    transition: 1s ease-in-out all;
 }
 .coinbox:hover {
     background-color: #394856!important;

@@ -1,5 +1,11 @@
 {
     "elements": {
+        "uib-progressbar": {
+            "attributes": {
+                "max": {},
+                "value": {}
+            }
+        },
         "coinbox": {
             "attributes": {
                 "ng-show": {},

@@ -13,8 +13,8 @@
 
  */
 angular.module('coinz').controller('MainCtrl', [
-    '$scope', '$http', '$timeout', '$q', '$localStorage',
-    function ($scope, $http, $timeout, $q, $localStorage) {
+    '$scope', '$http', '$timeout', '$interval', '$q', '$localStorage',
+    function ($scope, $http, $timeout, $interval, $q, $localStorage) {
         var self = this;
 
         var defaults = {
@@ -81,6 +81,10 @@ angular.module('coinz').controller('MainCtrl', [
 
         self.local = $localStorage.$default(angular.copy(defaults));
         self.loading = false;
+
+        self.refreshtime = 30;
+        self.timetorefresh = 0;
+        self.timesincelastrefresh = 0;
 
         self.clearcache = function () {
             self.local.$reset();
@@ -195,18 +199,28 @@ angular.module('coinz').controller('MainCtrl', [
         };
 
         var timeout = null;
+        var interval = null;
 
         var call = function () {
             sortCache = {};
             $timeout.cancel(timeout);
+            $interval.cancel(interval);
 
-            var minute = 1000 * 60;
+            var refresh = self.refreshtime * 1000;
+            self.timetorefresh = self.refreshtime;
+            self.timesincelastrefresh = 0;
 
             timeout = $timeout(function () {
                 call();
-            }, minute + 100);
+            }, refresh);
 
-            if (self.local.lastrefresh + minute > Date.now()) {
+            interval = $interval(function () {
+                self.timetorefresh--;
+                self.timesincelastrefresh++;
+            }, 1000);
+
+            if (self.local.lastrefresh + refresh - 4000 > Date.now()) {
+                console.log('no refresh needed');
                 return;
             }
 

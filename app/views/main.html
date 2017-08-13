@@ -18,6 +18,9 @@
                     </div>
                 </div>
             </div>
+            <div class="refresh-progress">
+                <uib-progressbar max="main.refreshtime" value="main.timesincelastrefresh"><span style="color:white; white-space:nowrap;">refresh in: {{main.timetorefresh}}</span></uib-progressbar>
+            </div>
             <div class="vol24">
                 <span>Total Market Cap USD: {{main.local.globaldata['total_market_cap_usd']|tsuffix:3}}</span>
                 <label>VOLUME 24h</label>
@@ -28,7 +31,7 @@
                 </div>
             </div>
             <div class="cache">
-                <button ng-click="main.clearcache()">reset cache</button>
+                <button ng-click="main.clearcache()">reset storage</button>
             </div>
         </div>
         <div>
@@ -44,10 +47,10 @@
             <button ng-click="main.refresh()"><i class="glyphicon glyphicon-refresh" aria-hidden="true"></i></button>
         </div>
         <div>
-            <label>WINNER 1h</label>
+            <label>WINNER 7d</label>
             <div>
-                <div class="coinbox-wrapper coinfade" ng-repeat="coin in main.local.toplists.winner1h.data track by coin.id">
-                    <coinbox coin="coin" change="percent_change_1h" size="medium"></coinbox>
+                <div class="coinbox-wrapper coinfade" ng-repeat="coin in main.local.toplists.winner7d.data track by coin.id">
+                    <coinbox coin="coin" change="percent_change_7d" size="medium"></coinbox>
                 </div>
             </div>
         </div>
@@ -60,10 +63,10 @@
             </div>
         </div>
         <div>
-            <label>WINNER 7d</label>
+            <label>WINNER 1h</label>
             <div>
-                <div class="coinbox-wrapper coinfade" ng-repeat="coin in main.local.toplists.winner7d.data track by coin.id">
-                    <coinbox coin="coin" change="percent_change_7d" size="medium"></coinbox>
+                <div class="coinbox-wrapper coinfade" ng-repeat="coin in main.local.toplists.winner1h.data track by coin.id">
+                    <coinbox coin="coin" change="percent_change_1h" size="medium"></coinbox>
                 </div>
             </div>
         </div>

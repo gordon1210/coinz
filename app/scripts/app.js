@@ -17,6 +17,7 @@ angular.module('coinz', [
     'ngTouch',
     'ngStorage',
     'ui.utils.masks',
+    'ui.bootstrap',
     'countUpModule'
 ]).config([
     '$routeProvider', '$httpProvider',
