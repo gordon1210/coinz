@@ -98,10 +98,10 @@ body.coinz-dark {
     left: 5px;
     width: 24%;
 }
-.progress {
+.coinz-dark .progress {
     background-color: #526577!important
 }
-.progress-bar {
+.coinz-dark .progress-bar {
     background-color: #394856!important;
 }
 
@@ -243,7 +243,10 @@ body.coinz-dark {
     position: relative;
     transition: 1s ease-in-out all;
 }
-.coinbox:hover {
+.coinz-bright .coinbox:hover {
+    background-color: #ddd!important;
+}
+.coinz-dark .coinbox:hover {
     background-color: #394856!important;
 }
 .coinbox.medium .coinbox-vol {
@@ -391,9 +394,13 @@ body.coinz-dark {
 .coinfade.ng-enter {
     opacity: 0;
 }
-.coinfade.ng-enter .coinbox {
+.coinz-dark .coinfade.ng-enter .coinbox {
     -webkit-animation: coinz-background-fade 2s infinite linear;
     animation: coinz-background-fade 2s infinite linear;
+}
+.coinz-bright .coinfade.ng-enter .coinbox {
+    -webkit-animation: coinz-background-fade-bright 2s infinite linear;
+    animation: coinz-background-fade-bright 2s infinite linear;
 }
 
 .coinfade.ng-enter.ng-enter-active {
@@ -419,6 +426,16 @@ body.coinz-dark {
 
 @keyframes coinz-background-fade {
     25%, 75% { background-color: #394856; }
+    0%, 50%, 100% { background-color: transparent; }
+}
+
+@-webkit-keyframes coinz-background-fade-bright {
+    25%, 75% { background-color: #ddd; }
+    0%, 50%, 100% { background-color: transparent; }
+}
+
+@keyframes coinz-background-fade-bright {
+    25%, 75% { background-color: #ddd; }
     0%, 50%, 100% { background-color: transparent; }
 }
 

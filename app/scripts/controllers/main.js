@@ -23,6 +23,7 @@ angular.module('coinz').controller('MainCtrl', [
             minbtc: 0.00000005,
             maxbtc: 0,
             maxwinnerlooser: 40,
+            darktheme: true,
             globaldata: {
                 'total_market_cap_usd': 0,
                 'total_24h_volume_usd': 0,
@@ -86,9 +87,15 @@ angular.module('coinz').controller('MainCtrl', [
         self.timetorefresh = 0;
         self.timesincelastrefresh = 0;
 
+        self.switchtheme = function () {
+            self.local.darktheme = !self.local.darktheme;
+        };
+
         self.clearcache = function () {
+            var dark = self.local.darktheme;
             self.local.$reset();
             self.local = $localStorage.$default(angular.copy(defaults));
+            self.local.darktheme = dark;
             self.refresh();
         };
 
