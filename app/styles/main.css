@@ -91,6 +91,10 @@ body.coinz-dark {
     margin: 0!important;
 }
 
+.lists .lists-head {
+    height: 70px;
+}
+
 .lists .vol24 {
     margin: 0 auto;
 }
@@ -107,6 +111,15 @@ body.coinz-dark {
     left: 0;
     top: 0;
     height: 40px;
+}
+.lists .filter2 {
+    position: absolute;
+    left: 0;
+    top: 35px;
+    height: 40px;
+}
+.lists .filter2 input {
+    width: 60px;
 }
 .lists .cache {
     left: auto;
@@ -129,9 +142,10 @@ body.coinz-dark {
     width: 124px;
 }
 
-.coinz-dark .lists .cache button,
-.coinz-dark .lists .filter button,
-.coinz-dark .lists .filter input {
+.coinz-dark .winloss button,
+.coinz-dark .winloss input,
+.coinz-dark .lists-head button,
+.coinz-dark .lists-head input {
     background-color: #262e38!important;
     border: 1px solid #3d4a59!important;
     color: #fff;
@@ -164,9 +178,44 @@ body.coinz-dark {
     line-height: 48px;
 }
 
+.lists .vol24 .count {
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    width: 84px;
+    margin-left: -34px;
+    height: 24px;
+}
+
+.lists .vol24 .count input {
+    width: 50px;
+    line-height: 24px;
+}
+.lists .vol24 .count button {
+    line-height: 24px;
+}
+.winloss {
+    position: relative;
+}
 .winloss > div {
     width: 16.6%;
     float: left;
+}
+
+.lists .winloss .count {
+    position: absolute;
+    top: 16px;
+    left: 5px;
+    width: 84px;
+    height: 24px;
+}
+
+.lists .winloss .count input {
+    width: 50px;
+    line-height: 24px;
+}
+.lists .winloss .count button {
+    line-height: 24px;
 }
 
 .coinbox-wrapper {

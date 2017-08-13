@@ -22,6 +22,7 @@ angular.module('coinz').controller('MainCtrl', [
             lastrefresh: 0,
             minbtc: 0.00000005,
             maxbtc: 0,
+            maxwinnerlooser: 40,
             globaldata: {
                 'total_market_cap_usd': 0,
                 'total_24h_volume_usd': 0,
@@ -67,12 +68,13 @@ angular.module('coinz').controller('MainCtrl', [
                     key: '24h_volume_usd',
                     reverse: false,
                     data: [],
-                    length: 18
+                    length: 12
                 },
                 'marketcap': {
                     key: 'market_cap_usd',
                     reverse: false,
-                    data: []
+                    data: [],
+                    length: 12
                 }
             }
         };
@@ -158,10 +160,37 @@ angular.module('coinz').controller('MainCtrl', [
 
         var getTopTen = function (field, reverse, length, offset) {
             offset = offset ? offset : 0;
-            var coindata = getSortedBy(field);
+
+            var iswinner = null;
+
+            var pFields = [
+                'percent_change_1h',
+                'percent_change_24h',
+                'percent_change_7d'
+            ];
+
+            var coindata = getSortedBy(field, iswinner);
+
             if (reverse) {
                 coindata.reverse();
             }
+
+            if (~pFields.indexOf(field)) {
+                iswinner = !reverse;
+            }
+
+            var coindata = coindata.filter(function (x) {
+                if (iswinner !== null && iswinner && x[field] <= 0) {
+                    return false;
+                }
+
+                if (iswinner !== null && !iswinner && x[field] > 0) {
+                    return false;
+                }
+
+                return true;
+            });
+
             return coindata.slice(offset, length + offset);
         };
 
