@@ -30,6 +30,7 @@
                     <button ng-click="main.refresh()"><i class="glyphicon glyphicon-refresh" aria-hidden="true"></i></button>
                 </div>
             </div>
+            <div class="btcdominance">BTC Dominance: <span ng-class="(main.local.globaldata['bitcoin_percentage_of_market_cap'] > 50 ? 'nb-dn' : 'nb-up')">{{main.local.globaldata['bitcoin_percentage_of_market_cap']|tsuffix:2}}%</span></div>
             <div class="cache">
                 <button ng-click="global.switchtheme()">switch theme</button>
                 <button ng-click="main.clearcache()">reset all</button>

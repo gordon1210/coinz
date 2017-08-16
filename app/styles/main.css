@@ -91,6 +91,19 @@ body.coinz-dark {
     margin: 0!important;
 }
 
+.btcdominance {
+    position: absolute;
+    width: 200px;
+    top: 2px;
+    right: 20%;
+    text-align: center;
+}
+
+.btcdominance,
+.btcdominance span {
+    font-size: 9px!important;
+}
+
 .refresh-progress {
     position: absolute;
     top: 40px;
